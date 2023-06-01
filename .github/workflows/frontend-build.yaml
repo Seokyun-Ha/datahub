@@ -43,6 +43,7 @@ jobs:
       - name: Pre-build artifacts for docker image
         #  여기!!
         run: |
+          env
           ./gradlew :datahub-frontend:dist -x test -x yarnTest -x yarnLint --parallel
           mv ./datahub-frontend/build/distributions/datahub-frontend-*.zip datahub-frontend.zip
         env:
