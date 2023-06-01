@@ -110,7 +110,7 @@ export const PLATFORM_URN_TO_LOGO = {
     [ELASTICSEARCH_URN]: elasticsearchLogo,
     [FEAST_URN]: feastLogo,
     [GLUE_URN]: glueLogo,
-    [HIVE_URN]: hiveLogo,
+    [HIVE_URN]: databricksLogo,
     [KAFKA_URN]: kafkaLogo,
     [LOOKER_URN]: lookerLogo,
     [MARIA_DB_URN]: mariadbLogo,
