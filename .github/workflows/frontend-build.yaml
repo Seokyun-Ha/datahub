@@ -43,21 +43,25 @@ jobs:
       - name: Pre-build artifacts for docker image
         #  여기!!
         run: |
-          env
           ./gradlew :datahub-frontend:dist -x test -x yarnTest -x yarnLint --parallel
-          mv ./datahub-frontend/build/distributions/datahub-frontend-*.zip datahub-frontend.zip
+        # mv ./datahub-frontend/build/distributions/datahub-frontend-*.zip datahub-frontend.zip
         env:
           NODE_OPTIONS: "--max-old-space-size=3072"
-      - name: Build and push
-        uses: ./.github/actions/docker-custom-build-and-push
+      - name: Archive zip file
+        uses: actions/upload-artifact@v3
         with:
-          images: |
-            ${{ env.DATAHUB_FRONTEND_IMAGE }}
-          tags: ${{ needs.setup.outputs.tag }}
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-          publish: ${{ needs.setup.outputs.publish }}
-          context: .
-          file: ./docker/datahub-frontend/Dockerfile
-          platforms: linux/amd64
+          name: frontend-zip
+          path: ./datahub-frontend/build/distributions/
+      # - name: Build and push
+      #   uses: ./.github/actions/docker-custom-build-and-push
+      #   with:
+      #     images: |
+      #       ${{ env.DATAHUB_FRONTEND_IMAGE }}
+      #     tags: ${{ needs.setup.outputs.tag }}
+      #     username: ${{ secrets.DOCKER_USERNAME }}
+      #     password: ${{ secrets.DOCKER_PASSWORD }}
+      #     publish: ${{ needs.setup.outputs.publish }}
+      #     context: .
+      #     file: ./docker/datahub-frontend/Dockerfile
+      #     platforms: linux/amd64
   
