@@ -1,4 +1,7 @@
- name: Frontend Build
+name: Frontend Build
+
+on:
+  push:
 
 env:
   DATAHUB_GMS_IMAGE: "linkedin/datahub-gms"
