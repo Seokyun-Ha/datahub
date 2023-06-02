@@ -14,9 +14,6 @@ import { SidebarTagsSection } from '../shared/containers/profile/sidebar/Sidebar
 import { PropertiesTab } from '../shared/tabs/Properties/PropertiesTab';
 import { SidebarDomainSection } from '../shared/containers/profile/sidebar/Domain/SidebarDomainSection';
 import { capitalizeFirstLetterOnly } from '../../shared/textUtil';
-import DataProductSection from '../shared/containers/profile/sidebar/DataProduct/DataProductSection';
-import { getDataProduct } from '../shared/utils';
-import EmbeddedProfile from '../shared/embed/EmbeddedProfile';
 
 /**
  * Definition of the DataHub Container entity.
@@ -101,9 +98,6 @@ export class ContainerEntity implements Entity<Container> {
                 {
                     component: SidebarDomainSection,
                 },
-                {
-                    component: DataProductSection,
-                },
                 // TODO: Add back once entity-level recommendations are complete.
                 // {
                 //    component: SidebarRecommendationsSection,
@@ -113,7 +107,6 @@ export class ContainerEntity implements Entity<Container> {
     );
 
     renderPreview = (_: PreviewType, data: Container) => {
-        const genericProperties = this.getGenericEntityProperties(data);
         return (
             <Preview
                 urn={data.urn}
@@ -126,7 +119,6 @@ export class ContainerEntity implements Entity<Container> {
                 container={data.container}
                 entityCount={data.entities?.total}
                 domain={data.domain?.domain}
-                dataProduct={getDataProduct(genericProperties?.dataProduct)}
                 tags={data.tags}
                 externalUrl={data.properties?.externalUrl}
             />
@@ -135,7 +127,6 @@ export class ContainerEntity implements Entity<Container> {
 
     renderSearch = (result: SearchResult) => {
         const data = result.entity as Container;
-        const genericProperties = this.getGenericEntityProperties(data);
         return (
             <Preview
                 urn={data.urn}
@@ -149,7 +140,6 @@ export class ContainerEntity implements Entity<Container> {
                 container={data.container}
                 entityCount={data.entities?.total}
                 domain={data.domain?.domain}
-                dataProduct={getDataProduct(genericProperties?.dataProduct)}
                 parentContainers={data.parentContainers}
                 externalUrl={data.properties?.externalUrl}
                 tags={data.tags}
@@ -184,16 +174,6 @@ export class ContainerEntity implements Entity<Container> {
             EntityCapabilityType.TAGS,
             EntityCapabilityType.DOMAINS,
             EntityCapabilityType.SOFT_DELETE,
-            EntityCapabilityType.DATA_PRODUCTS,
         ]);
     };
-
-    renderEmbeddedProfile = (urn: string) => (
-        <EmbeddedProfile
-            urn={urn}
-            entityType={EntityType.Container}
-            useEntityQuery={useGetContainerQuery}
-            getOverrideProperties={this.getOverridePropertiesFromEntity}
-        />
-    );
 }

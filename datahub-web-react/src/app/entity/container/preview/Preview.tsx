@@ -12,7 +12,6 @@ import {
     GlobalTags,
     Deprecation,
     GlossaryTerms,
-    DataProduct,
 } from '../../../../types.generated';
 import DefaultPreviewCard from '../../../preview/DefaultPreviewCard';
 import { capitalizeFirstLetterOnly } from '../../../shared/textUtil';
@@ -40,7 +39,6 @@ export const Preview = ({
     container,
     entityCount,
     domain,
-    dataProduct,
     parentContainers,
     externalUrl,
     deprecation,
@@ -60,7 +58,6 @@ export const Preview = ({
     container?: Container | null;
     entityCount?: number;
     domain?: Domain | null;
-    dataProduct?: DataProduct | null;
     deprecation?: Deprecation | null;
     parentContainers?: ParentContainersResult | null;
     externalUrl?: string | null;
@@ -84,7 +81,6 @@ export const Preview = ({
             container={container || undefined}
             typeIcon={entityRegistry.getIcon(EntityType.Container, 12, IconStyleType.ACCENT)}
             domain={domain || undefined}
-            dataProduct={dataProduct}
             parentContainers={parentContainers}
             tags={tags || undefined}
             glossaryTerms={glossaryTerms || undefined}

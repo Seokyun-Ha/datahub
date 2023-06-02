@@ -32,7 +32,6 @@ export const SidebarOwnerSection = ({ properties, readOnly }: Props) => {
                         owner={owner}
                         refetch={refetch}
                         readOnly={readOnly}
-                        fontSize={12}
                     />
                 ))}
                 {ownersEmpty && (

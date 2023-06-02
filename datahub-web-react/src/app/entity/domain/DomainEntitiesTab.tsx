@@ -24,7 +24,6 @@ export const DomainEntitiesTab = () => {
             }}
             emptySearchQuery="*"
             placeholderText="Filter domain entities..."
-            skipCache
         />
     );
 };

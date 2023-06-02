@@ -14,8 +14,6 @@ import { SidebarAboutSection } from '../shared/containers/profile/sidebar/AboutS
 import { SidebarDomainSection } from '../shared/containers/profile/sidebar/Domain/SidebarDomainSection';
 import { SidebarOwnerSection } from '../shared/containers/profile/sidebar/Ownership/SidebarOwnerSection';
 import { LineageTab } from '../shared/tabs/Lineage/LineageTab';
-import DataProductSection from '../shared/containers/profile/sidebar/DataProduct/DataProductSection';
-import { getDataProduct } from '../shared/utils';
 
 /**
  * Definition of the DataHub MLPrimaryKey entity.
@@ -104,15 +102,11 @@ export class MLPrimaryKeyEntity implements Entity<MlPrimaryKey> {
                 {
                     component: SidebarDomainSection,
                 },
-                {
-                    component: DataProductSection,
-                },
             ]}
         />
     );
 
     renderPreview = (_: PreviewType, data: MlPrimaryKey) => {
-        const genericProperties = this.getGenericEntityProperties(data);
         // eslint-disable-next-line
         const platform = data?.['featureTables']?.relationships?.[0]?.entity?.platform;
         return (
@@ -123,14 +117,12 @@ export class MLPrimaryKeyEntity implements Entity<MlPrimaryKey> {
                 description={data.description}
                 owners={data.ownership?.owners}
                 platform={platform}
-                dataProduct={getDataProduct(genericProperties?.dataProduct)}
             />
         );
     };
 
     renderSearch = (result: SearchResult) => {
         const data = result.entity as MlPrimaryKey;
-        const genericProperties = this.getGenericEntityProperties(data);
         // eslint-disable-next-line
         const platform = data?.['featureTables']?.relationships?.[0]?.entity?.platform;
         return (
@@ -142,7 +134,6 @@ export class MLPrimaryKeyEntity implements Entity<MlPrimaryKey> {
                 owners={data.ownership?.owners}
                 platform={platform}
                 platformInstanceId={data.dataPlatformInstance?.instanceId}
-                dataProduct={getDataProduct(genericProperties?.dataProduct)}
             />
         );
     };
@@ -179,7 +170,6 @@ export class MLPrimaryKeyEntity implements Entity<MlPrimaryKey> {
             EntityCapabilityType.DOMAINS,
             EntityCapabilityType.DEPRECATION,
             EntityCapabilityType.SOFT_DELETE,
-            EntityCapabilityType.DATA_PRODUCTS,
         ]);
     };
 }

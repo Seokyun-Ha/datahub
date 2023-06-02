@@ -236,7 +236,6 @@ fragment nonRecursiveDatasetFields on Dataset {
     domain {
         ...entityDomain
     }
-    ...entityDataProduct
     container {
         ...entityContainer
     }
@@ -276,7 +275,6 @@ fragment nonRecursiveDataFlowFields on DataFlow {
     domain {
         ...entityDomain
     }
-    ...entityDataProduct
     deprecation {
         ...deprecationFields
     }
@@ -299,7 +297,6 @@ fragment nonRecursiveDataJobFields on DataJob {
     domain {
         ...entityDomain
     }
-    ...entityDataProduct
     deprecation {
         ...deprecationFields
     }
@@ -341,7 +338,6 @@ fragment dataJobFields on DataJob {
     domain {
         ...entityDomain
     }
-    ...entityDataProduct
     deprecation {
         ...deprecationFields
     }
@@ -401,7 +397,6 @@ fragment dashboardFields on Dashboard {
     domain {
         ...entityDomain
     }
-    ...entityDataProduct
     parentContainers {
         ...parentContainersFields
     }
@@ -491,7 +486,6 @@ fragment nonRecursiveMLFeature on MLFeature {
     domain {
         ...entityDomain
     }
-    ...entityDataProduct
     tags {
         ...globalTagsFields
     }
@@ -561,7 +555,6 @@ fragment nonRecursiveMLPrimaryKey on MLPrimaryKey {
     domain {
         ...entityDomain
     }
-    ...entityDataProduct
     tags {
         ...globalTagsFields
     }
@@ -629,7 +622,6 @@ fragment nonRecursiveMLFeatureTable on MLFeatureTable {
     domain {
         ...entityDomain
     }
-    ...entityDataProduct
     tags {
         ...globalTagsFields
     }
@@ -771,7 +763,6 @@ fragment nonRecursiveMLModel on MLModel {
     domain {
         ...entityDomain
     }
-    ...entityDataProduct
     tags {
         ...globalTagsFields
     }
@@ -812,7 +803,6 @@ fragment nonRecursiveMLModelGroupFields on MLModelGroup {
     domain {
         ...entityDomain
     }
-    ...entityDataProduct
     tags {
         ...globalTagsFields
     }
@@ -907,27 +897,6 @@ fragment entityDomain on DomainAssociation {
         }
     }
     associatedUrn
-}
-
-fragment entityDataProduct on Entity {
-    dataProduct: relationships(input: { types: ["DataProductContains"], direction: INCOMING, start: 0, count: 1 }) {
-        relationships {
-            type
-            entity {
-                urn
-                type
-                ... on DataProduct {
-                    properties {
-                        name
-                        description
-                    }
-                    domain {
-                        ...entityDomain
-                    }
-                }
-            }
-        }
-    }
 }
 
 fragment inputFieldsFields on InputFields {

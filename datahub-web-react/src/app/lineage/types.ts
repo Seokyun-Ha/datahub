@@ -18,7 +18,6 @@ import {
     InputFields,
     Entity,
     LineageRelationship,
-    SiblingProperties,
 } from '../../types.generated';
 
 export type EntitySelectParams = {
@@ -52,7 +51,6 @@ export type FetchedEntity = {
     status?: Maybe<Status>;
     siblingPlatforms?: Maybe<DataPlatform[]>;
     fineGrainedLineages?: [FineGrainedLineage];
-    siblings?: Maybe<SiblingProperties>;
     schemaMetadata?: SchemaMetadata;
     inputFields?: InputFields;
     canEditLineage?: boolean;

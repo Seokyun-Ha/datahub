@@ -46,7 +46,6 @@ export default function GlossaryRelatedEntity() {
             }}
             emptySearchQuery="*"
             placeholderText="Filter entities..."
-            skipCache
         />
     );
 }

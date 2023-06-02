@@ -17,7 +17,6 @@ import { PropertiesTab } from '../shared/tabs/Properties/PropertiesTab';
 import { DocumentationTab } from '../shared/tabs/Documentation/DocumentationTab';
 import MlModelFeaturesTab from './profile/MlModelFeaturesTab';
 import { EntityMenuItems } from '../shared/EntityDropdown/EntityDropdown';
-import DataProductSection from '../shared/containers/profile/sidebar/DataProduct/DataProductSection';
 
 /**
  * Definition of the DataHub MlModel entity.
@@ -114,9 +113,6 @@ export class MLModelEntity implements Entity<MlModel> {
                 {
                     component: SidebarDomainSection,
                 },
-                {
-                    component: DataProductSection,
-                },
             ]}
         />
     );
@@ -156,7 +152,6 @@ export class MLModelEntity implements Entity<MlModel> {
             EntityCapabilityType.DOMAINS,
             EntityCapabilityType.DEPRECATION,
             EntityCapabilityType.SOFT_DELETE,
-            EntityCapabilityType.DATA_PRODUCTS,
         ]);
     };
 }

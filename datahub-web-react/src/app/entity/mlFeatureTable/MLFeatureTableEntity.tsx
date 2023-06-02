@@ -17,8 +17,6 @@ import { DocumentationTab } from '../shared/tabs/Documentation/DocumentationTab'
 import { PropertiesTab } from '../shared/tabs/Properties/PropertiesTab';
 import { EntityMenuItems } from '../shared/EntityDropdown/EntityDropdown';
 import { capitalizeFirstLetterOnly } from '../../shared/textUtil';
-import DataProductSection from '../shared/containers/profile/sidebar/DataProduct/DataProductSection';
-import { getDataProduct } from '../shared/utils';
 
 /**
  * Definition of the DataHub MLFeatureTable entity.
@@ -109,15 +107,11 @@ export class MLFeatureTableEntity implements Entity<MlFeatureTable> {
                 {
                     component: SidebarDomainSection,
                 },
-                {
-                    component: DataProductSection,
-                },
             ]}
         />
     );
 
     renderPreview = (_: PreviewType, data: MlFeatureTable) => {
-        const genericProperties = this.getGenericEntityProperties(data);
         return (
             <Preview
                 urn={data.urn}
@@ -126,14 +120,12 @@ export class MLFeatureTableEntity implements Entity<MlFeatureTable> {
                 owners={data.ownership?.owners}
                 logoUrl={data.platform?.properties?.logoUrl}
                 platformName={data.platform?.properties?.displayName || capitalizeFirstLetterOnly(data.platform?.name)}
-                dataProduct={getDataProduct(genericProperties?.dataProduct)}
             />
         );
     };
 
     renderSearch = (result: SearchResult) => {
         const data = result.entity as MlFeatureTable;
-        const genericProperties = this.getGenericEntityProperties(data);
         return (
             <Preview
                 urn={data.urn}
@@ -143,7 +135,6 @@ export class MLFeatureTableEntity implements Entity<MlFeatureTable> {
                 logoUrl={data.platform?.properties?.logoUrl}
                 platformName={data.platform?.properties?.displayName || capitalizeFirstLetterOnly(data.platform?.name)}
                 platformInstanceId={data.dataPlatformInstance?.instanceId}
-                dataProduct={getDataProduct(genericProperties?.dataProduct)}
             />
         );
     };
@@ -178,7 +169,6 @@ export class MLFeatureTableEntity implements Entity<MlFeatureTable> {
             EntityCapabilityType.DOMAINS,
             EntityCapabilityType.DEPRECATION,
             EntityCapabilityType.SOFT_DELETE,
-            EntityCapabilityType.DATA_PRODUCTS,
         ]);
     };
 }

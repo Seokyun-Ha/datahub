@@ -1,15 +1,7 @@
 import React from 'react';
 import { Typography } from 'antd';
 import styled from 'styled-components';
-import {
-    DataProduct,
-    Deprecation,
-    Domain,
-    EntityType,
-    GlobalTags,
-    Owner,
-    SearchInsight,
-} from '../../../../types.generated';
+import { Deprecation, Domain, EntityType, GlobalTags, Owner, SearchInsight } from '../../../../types.generated';
 import DefaultPreviewCard from '../../../preview/DefaultPreviewCard';
 import { useEntityRegistry } from '../../../useEntityRegistry';
 import { IconStyleType } from '../../Entity';
@@ -29,7 +21,6 @@ export const Preview = ({
     owners,
     globalTags,
     domain,
-    dataProduct,
     externalUrl,
     snippet,
     insights,
@@ -44,7 +35,6 @@ export const Preview = ({
     platformLogo?: string | null;
     owners?: Array<Owner> | null;
     domain?: Domain | null;
-    dataProduct?: DataProduct | null;
     globalTags?: GlobalTags | null;
     deprecation?: Deprecation | null;
     externalUrl?: string | null;
@@ -67,7 +57,6 @@ export const Preview = ({
             owners={owners}
             tags={globalTags || undefined}
             domain={domain}
-            dataProduct={dataProduct}
             snippet={snippet}
             insights={insights}
             externalUrl={externalUrl}

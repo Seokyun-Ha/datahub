@@ -62,7 +62,7 @@ export const SearchFilterLabel = ({ field, value, entity, count, hideCount }: Pr
         const truncatedDisplayName = displayName.length > 25 ? `${displayName.slice(0, 25)}...` : displayName;
         return (
             <Tooltip title={displayName}>
-                <StyledTag $colorHash={tag?.urn} $color={tag?.properties?.colorHex} fontSize={10}>
+                <StyledTag $colorHash={tag?.urn} $color={tag?.properties?.colorHex}>
                     {truncatedDisplayName}
                 </StyledTag>
                 {countText}
@@ -113,7 +113,7 @@ export const SearchFilterLabel = ({ field, value, entity, count, hideCount }: Pr
         return (
             <Tooltip title={displayName}>
                 <Tag closable={false}>
-                    <BookOutlined style={{ marginRight: '4px' }} />
+                    <BookOutlined style={{ marginRight: '3%' }} />
                     {truncatedDisplayName}
                 </Tag>
                 {countText}
@@ -177,18 +177,7 @@ export const SearchFilterLabel = ({ field, value, entity, count, hideCount }: Pr
         const truncatedDomainName = displayName.length > 25 ? `${displayName.slice(0, 25)}...` : displayName;
         return (
             <Tooltip title={displayName}>
-                <DomainLink domain={domain} name={truncatedDomainName} tagStyle={{ fontSize: 10 }} fontSize={10} />
-                {countText}
-            </Tooltip>
-        );
-    }
-
-    if (entity?.type === EntityType.DataProduct) {
-        const displayName = entityRegistry.getDisplayName(EntityType.DataProduct, entity);
-        const truncatedName = displayName.length > 25 ? `${displayName.slice(0, 25)}...` : displayName;
-        return (
-            <Tooltip title={displayName}>
-                {truncatedName}
+                <DomainLink domain={domain} name={truncatedDomainName} />
                 {countText}
             </Tooltip>
         );

@@ -1,17 +1,12 @@
 import { BookOutlined } from '@ant-design/icons';
 import { message, Modal, Tag } from 'antd';
 import React from 'react';
-import styled from 'styled-components';
 import Highlight from 'react-highlighter';
 import { useRemoveTermMutation } from '../../../../graphql/mutations.generated';
 import { EntityType, GlossaryTermAssociation, SubResourceType } from '../../../../types.generated';
 import { useEntityRegistry } from '../../../useEntityRegistry';
 
 const highlightMatchStyle = { background: '#ffe58f', padding: '0' };
-
-const StyledTag = styled(Tag)<{ fontSize?: number }>`
-    ${(props) => props.fontSize && `font-size: ${props.fontSize}px;`}
-`;
 
 interface Props {
     term: GlossaryTermAssociation;
@@ -20,7 +15,6 @@ interface Props {
     canRemove?: boolean;
     readOnly?: boolean;
     highlightText?: string;
-    fontSize?: number;
     onOpenModal?: () => void;
     refetch?: () => Promise<any>;
 }
@@ -32,7 +26,6 @@ export default function TermContent({
     canRemove,
     readOnly,
     highlightText,
-    fontSize,
     onOpenModal,
     refetch,
 }: Props) {
@@ -77,19 +70,18 @@ export default function TermContent({
     };
 
     return (
-        <StyledTag
+        <Tag
             style={{ cursor: 'pointer' }}
             closable={canRemove && !readOnly}
             onClose={(e) => {
                 e.preventDefault();
                 removeTerm(term);
             }}
-            fontSize={fontSize}
         >
-            <BookOutlined style={{ marginRight: '4px' }} />
+            <BookOutlined style={{ marginRight: '3%' }} />
             <Highlight style={{ marginLeft: 0 }} matchStyle={highlightMatchStyle} search={highlightText}>
                 {entityRegistry.getDisplayName(EntityType.GlossaryTerm, term.term)}
             </Highlight>
-        </StyledTag>
+        </Tag>
     );
 }

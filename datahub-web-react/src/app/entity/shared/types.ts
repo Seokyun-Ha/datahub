@@ -72,7 +72,6 @@ export type GenericEntityProperties = {
     glossaryTerms?: Maybe<GlossaryTerms>;
     ownership?: Maybe<Ownership>;
     domain?: Maybe<DomainAssociation>;
-    dataProduct?: Maybe<EntityRelationshipsResult>;
     platform?: Maybe<DataPlatform>;
     dataPlatformInstance?: Maybe<DataPlatformInstance>;
     customProperties?: Maybe<CustomPropertiesEntry[]>;
@@ -139,8 +138,6 @@ export type EntityContextType = {
     routeToTab: (params: { tabName: string; tabParams?: Record<string, any>; method?: 'push' | 'replace' }) => void;
     refetch: () => Promise<any>;
     lineage: FetchedEntity | undefined;
-    shouldRefetchEmbeddedListSearch?: boolean;
-    setShouldRefetchEmbeddedListSearch?: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export type SchemaContextType = {

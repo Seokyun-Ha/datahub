@@ -54,8 +54,7 @@ export default function ExternalUrlButton({ externalUrl, platformName, entityTyp
                 rel="noreferrer noopener"
                 onClick={sendAnalytics}
             >
-                {displayedName ? `View in ${displayedName}` : 'View link'}{' '}
-                <ArrowRightOutlined style={{ fontSize: 12 }} />
+                View in {displayedName} <ArrowRightOutlined style={{ fontSize: 12 }} />
             </StyledButton>
         </ExternalUrlWrapper>
     );

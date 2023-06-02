@@ -7,7 +7,8 @@ import { Post } from '../../types.generated';
 const CardContainer = styled.div`
     display: flex;
     flex-direction: row;
-    min-height: 140px;
+    margin-bottom: 12px;
+    height: 140px;
     border: 1px solid ${ANTD_GRAY[4]};
     border-radius: 12px;
     box-shadow: ${(props) => props.theme.styles['box-shadow']};
@@ -25,9 +26,8 @@ const TextContainer = styled.div`
     flex-direction: column;
 `;
 
-const TitleText = styled(Typography.Title)`
+const Title = styled(Typography.Title)`
     word-break: break-word;
-    min-height: 20px;
 `;
 
 const HeaderText = styled(Typography.Text)`
@@ -48,14 +48,14 @@ export const PostTextCard = ({ textPost }: Props) => {
         <CardContainer>
             <TextContainer>
                 <HeaderText type="secondary">Announcement</HeaderText>
-                <TitleText
+                <Title
                     ellipsis={{
                         rows: 1,
                     }}
                     level={5}
                 >
                     {textPost?.content?.title}
-                </TitleText>
+                </Title>
                 <AnnouncementText>{textPost?.content?.description}</AnnouncementText>
             </TextContainer>
         </CardContainer>

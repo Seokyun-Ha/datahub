@@ -27,8 +27,6 @@ import { DashboardStatsSummarySubHeader } from './profile/DashboardStatsSummaryS
 import { ChartSnippet } from '../chart/ChartSnippet';
 import { EmbedTab } from '../shared/tabs/Embed/EmbedTab';
 import EmbeddedProfile from '../shared/embed/EmbeddedProfile';
-import DataProductSection from '../shared/containers/profile/sidebar/DataProduct/DataProductSection';
-import { getDataProduct } from '../shared/utils';
 
 /**
  * Definition of the DataHub Dashboard entity.
@@ -149,9 +147,6 @@ export class DashboardEntity implements Entity<Dashboard> {
                 {
                     component: SidebarDomainSection,
                 },
-                {
-                    component: DataProductSection,
-                },
             ]}
         />
     );
@@ -169,7 +164,6 @@ export class DashboardEntity implements Entity<Dashboard> {
     };
 
     renderPreview = (_: PreviewType, data: Dashboard) => {
-        const genericProperties = this.getGenericEntityProperties(data);
         return (
             <DashboardPreview
                 urn={data.urn}
@@ -182,7 +176,6 @@ export class DashboardEntity implements Entity<Dashboard> {
                 glossaryTerms={data?.glossaryTerms}
                 logoUrl={data?.platform?.properties?.logoUrl}
                 domain={data.domain?.domain}
-                dataProduct={getDataProduct(genericProperties?.dataProduct)}
                 container={data.container}
                 parentContainers={data.parentContainers}
                 deprecation={data.deprecation}
@@ -197,7 +190,6 @@ export class DashboardEntity implements Entity<Dashboard> {
 
     renderSearch = (result: SearchResult) => {
         const data = result.entity as Dashboard;
-        const genericProperties = this.getGenericEntityProperties(data);
 
         return (
             <DashboardPreview
@@ -213,7 +205,6 @@ export class DashboardEntity implements Entity<Dashboard> {
                 insights={result.insights}
                 logoUrl={data?.platform?.properties?.logoUrl || ''}
                 domain={data.domain?.domain}
-                dataProduct={getDataProduct(genericProperties?.dataProduct)}
                 container={data.container}
                 parentContainers={data.parentContainers}
                 deprecation={data.deprecation}
@@ -264,7 +255,6 @@ export class DashboardEntity implements Entity<Dashboard> {
             EntityCapabilityType.DOMAINS,
             EntityCapabilityType.DEPRECATION,
             EntityCapabilityType.SOFT_DELETE,
-            EntityCapabilityType.DATA_PRODUCTS,
         ]);
     };
 
